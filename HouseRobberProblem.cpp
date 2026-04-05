@@ -9,6 +9,7 @@ const int N=1000;
 int a[N];
 int mem[N];
 int f[N];
+int dp[N];
 int n;
 //递归法dfs+记忆化
 int dfs(int x)
@@ -31,12 +32,25 @@ int main()
     // cout<<res<<endl;
 
     //迭代递推方法
+    //从后往前
     //f[i]为从第i个房子到最后一个房子所能赚到的最大值
-    memset(f,0,sizeof(f));
-    for(int i=n;i>=1;i--)
+    // memset(f,0,sizeof(f));
+    // for(int i=n;i>=1;i--)
+    // {
+    //     f[i]=max(f[i+1],f[i+2]+a[i]);
+    // }
+    
+    //从前往后
+    //dp[i]为第一个房子到第i个房子所能赚到的最大值
+    //空间优化：只需三个变量
+    int pre1 = 0;  //上一家
+    int pre2 = 0;  //上两家
+    for(int i=1;i<=n;i++)
     {
-        f[i]=max(f[i+1],f[i+2]+a[i]);
+        int current = max(pre1,pre2+a[i]);
+        pre2 = pre1;
+        pre1 = current;
     }
-    cout<<f[1]<<endl;
+    cout<<pre1<<endl;
     return 0;
 }
