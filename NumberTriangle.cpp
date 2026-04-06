@@ -37,7 +37,7 @@ int main()
         }
     }
     int res = dfs(1,1);
-    //递推
+    //递推方法
     // memset(f,0,sizeof(f));
     // for(int i=n;i>=1;i--)
     // {
